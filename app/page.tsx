@@ -38,7 +38,7 @@ const faqs = [
   { q: "En quelles langues sont réalisées les consultations ?", a: "Les consultations sont disponibles en français, en arabe et en anglais. Le Dr. Dhaidah accueille une patientèle internationale et s'assure que chaque patiente comprend pleinement la procédure proposée." },
 ]
 
-const fadeUp = { hidden: { opacity: 0, y: 40 }, visible: (i = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.7, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] } }) }
+const fadeUp = { hidden: { opacity: 0, y: 40 }, visible: (i = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.7, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } }) }
 
 export default function Home() {
   useReveal()
