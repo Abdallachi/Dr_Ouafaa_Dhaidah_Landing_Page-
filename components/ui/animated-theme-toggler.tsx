@@ -12,13 +12,12 @@ type AnimatedThemeTogglerProps = {
 
 export const AnimatedThemeToggler = ({ className }: AnimatedThemeTogglerProps) => {
   const buttonRef = useRef<HTMLButtonElement>(null)
-  const [darkMode, setDarkMode] = useState(() =>
-    typeof window !== "undefined"
-      ? document.documentElement.classList.contains("dark")
-      : false
-  )
+  const [darkMode, setDarkMode] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
+    setDarkMode(document.documentElement.classList.contains("dark"))
     const syncTheme = () =>
       setDarkMode(document.documentElement.classList.contains("dark"))
     const observer = new MutationObserver(syncTheme)
@@ -68,6 +67,8 @@ export const AnimatedThemeToggler = ({ className }: AnimatedThemeTogglerProps) =
       }
     )
   }, [darkMode])
+
+  if (!mounted) return <div className="w-9 h-9" />
 
   return (
     <button

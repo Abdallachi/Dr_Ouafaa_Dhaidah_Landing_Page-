@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr" className={`${sora.variable} h-full antialiased`} suppressHydrationWarning>
-      <head>
+      <body className="min-h-full flex flex-col font-[family-name:var(--font-sora)]">
         <Script id="theme-init" strategy="beforeInteractive">{`
           (function(){
             try {
@@ -24,8 +24,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             } catch(e){}
           })();
         `}</Script>
-      </head>
-      <body className="min-h-full flex flex-col font-[family-name:var(--font-sora)]">{children}</body>
+        {children}
+      </body>
     </html>
   )
 }
