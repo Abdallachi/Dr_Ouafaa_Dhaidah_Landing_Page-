@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { Sora } from "next/font/google"
+import Script from "next/script"
 import "./globals.css"
 
 const sora = Sora({ subsets: ["latin"], variable: "--font-sora" })
@@ -13,8 +14,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="fr" className={`${sora.variable} h-full antialiased`} suppressHydrationWarning>
       <head>
-        {/* Prevent flash of wrong theme */}
-        <script dangerouslySetInnerHTML={{ __html: `
+        <Script id="theme-init" strategy="beforeInteractive">{`
           (function(){
             try {
               var t = localStorage.getItem('theme');
@@ -23,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               }
             } catch(e){}
           })();
-        `}} />
+        `}</Script>
       </head>
       <body className="min-h-full flex flex-col font-[family-name:var(--font-sora)]">{children}</body>
     </html>
